@@ -1,0 +1,106 @@
+class Node{
+    int data;
+    Node next;
+    
+    Node(int data){
+        this.data = data;
+        next = null;
+    }
+
+}
+
+
+public class LinkedList {
+    public static void main(String args[]) {
+      Node list = null;
+      
+      LinkedList operation = new LinkedList();
+      
+      list = operation.createNode(list,1);
+      list = operation.createNode(list,3);
+      list = operation.createNode(list,6);
+      list = operation.createNode(list,12);
+      
+      operation.printList(list);
+      
+      list = operation.deleteNode(list,12);
+      operation.printList(list);
+      list = operation.deleteNode(list,1);
+      operation.printList(list);
+      list = operation.deleteNode(list,6);
+      operation.printList(list);
+      
+    }
+    
+    Node createNode(Node list, int data){
+        Node newNode = new Node(data);
+        
+        if(list == null){
+            System.out.println("new node created : " + data);
+            list = newNode;
+        }
+        else{
+            Node itr = list;
+            while(itr.next != null){
+                System.out.println("new node created : " + data);
+                itr = itr.next;
+            }
+                
+            
+            itr.next = newNode;
+        }
+        
+        
+        return list;
+    }
+    
+    Node deleteNode(Node list, int data){
+        Node itr = list;
+        
+         System.out.println("Node to be deleted : " + data);
+        
+        if(itr == null)
+            return list;
+        else if(itr.next == null){
+            if(itr.data == data)
+                return null;
+            else
+                return list;
+        }
+        else if(itr.data == data){
+            if(itr.next.next != null){
+                list = list.next;
+            }
+            else
+                itr.next = null;
+            return list;
+        }
+        else{
+        while(itr.next != null && itr.next.data != data){
+                itr = itr.next;
+        }
+        
+        if(itr.next == null)
+            return list;
+        
+        if(itr.next.next == null)
+            itr.next = null;
+        else
+            itr.next = itr.next.next;
+        }
+        
+        return list;
+        
+        
+    }
+    
+    void printList(Node list){
+        while(list != null){
+            System.out.print("->" + list.data);
+            list = list.next;
+        }
+        
+        System.out.println();
+    }
+}
+
