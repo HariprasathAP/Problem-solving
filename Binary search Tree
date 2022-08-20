@@ -1,0 +1,97 @@
+class Node{
+    int data;
+    Node right;
+    Node left;
+    Node(int data){
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
+    
+}
+
+public class Tree {
+    public static void main(String args[]) {
+      Node tree = null;
+      
+      tree = addNode(10,tree);
+      tree = addNode(1,tree);
+      tree = addNode(4,tree);
+      tree = addNode(9,tree);
+      tree = addNode(6,tree);
+      tree = addNode(7,tree);
+      tree = addNode(8,tree);
+      tree = addNode(11,tree);
+      tree = addNode(44,tree);
+      tree = addNode(144,tree);
+      tree = addNode(1244,tree);
+      tree = addNode(12244,tree);
+      
+      preOrder(tree);
+      
+      System.out.println(treeHeight(tree,0,0));
+      
+    }
+    
+    static Node addNode(int data, Node temp){
+        if(temp == null){
+            return new Node(data);
+        }
+        
+        if(data > temp.data){
+        //System.out.println("Greater -> " + data + " temp data -> " + temp.data);
+            if(temp.right == null)
+                temp.right = new Node(data);
+            else
+                addNode(data,temp.right);
+        }
+        else{
+            // System.out.println("Smaller -> " + data +" temp data -> " + temp.data);
+            if(temp.left == null)
+                temp.left = new Node(data);
+            else
+                addNode(data,temp.left);
+        }
+            
+        return temp;
+        
+    }
+    
+    static void preOrder(Node tree){
+        
+        if(tree == null){
+            if(height < count)
+                height = count;
+                count = 0;
+            return height;
+        }
+        
+        count++;
+        
+        printTree(tree.left);
+        
+        System.out.println("-> " + tree.data);
+            
+        printTree(tree.right);
+           
+    }
+    
+    static int treeHeight(Node tree, int count, int height){
+        
+        if(tree == null){
+            if(height < count)
+                height = count;
+                count = 0;
+            return height;
+        }
+        
+        count++;
+        
+        height = treeHeight(tree.left,count,height);
+            
+        height = treeHeight(tree.right,count,height);
+            
+       
+        return height;
+    }
+}
