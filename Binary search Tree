@@ -114,4 +114,46 @@ public class Tree {
         return sum;
         
     }
+    
+    
+    //Invert tree
+    public TreeNode invertTree(TreeNode root) {
+        if(root == null || (root.left == null && root.right == null))
+            return root;
+        
+        root = invert(root,root.left,root.right);
+        
+        return root;
+            
+    }
+    
+    TreeNode invert(TreeNode root,TreeNode leftNode, TreeNode rightNode){
+        
+        if(rightNode == null && leftNode != null){
+            TreeNode temp = leftNode;
+            leftNode = null;
+            rightNode = temp;
+            return root;
+        }
+        
+        if(leftNode == null && rightNode != null){
+            TreeNode temp = rightNode;
+            rightNode = null;
+            leftNode = temp;
+            return root;
+        }       
+            
+        
+        if(rightNode == null && leftNode == null)
+            return root;
+        
+        int temp = leftNode.val;
+        leftNode.val = rightNode.val;
+        rightNode.val = temp;
+        
+        root = invert(root,leftNode.left,rightNode.right);
+        root = invert(root,leftNode.right,rightNode.left);
+        
+        return root;
+    }
 }
