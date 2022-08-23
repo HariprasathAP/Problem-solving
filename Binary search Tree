@@ -26,7 +26,6 @@ public class Tree {
       tree = addNode(144,tree);
       tree = addNode(1244,tree);
       tree = addNode(12244,tree);
-      
       preOrder(tree);
       
       System.out.println(treeHeight(tree,0,0));
