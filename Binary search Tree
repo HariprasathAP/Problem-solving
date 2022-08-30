@@ -30,7 +30,7 @@ public class Tree {
       
       System.out.println(treeHeight(tree,0,0));
       
-    }
+    } 
     
     static Node addNode(int data, Node temp){
         if(temp == null){
